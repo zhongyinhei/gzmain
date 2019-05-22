@@ -1,0 +1,16 @@
+Python 3.7.2
+调用本地web_no_vnc
+node C:\Users\xh\node_modules\novnc-noVNC-b00a608\websockify-master\other\js\websockify.js --web C:\Users\xh\node_modules\novnc-noVNC-b00a608 5000 192.168.130.27:5905
+
+调用服务器web_no_vnc
+
+启动celery命令
+# celery -A handle_data worker -l info -Q to_create  -P eventlet 生产数据
+# celery -A handle_data worker -l info -Q to_analysis -P eventlet 解析数据
+# celery -A handle_data worker -l info -Q to_save -P eventlet  消费数据
+
+启用flower命令
+celery.exe flower --broker=amqp://guest:guest@localhost:5672/test
+
+
+

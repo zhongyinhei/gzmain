@@ -26,8 +26,8 @@ jinru = Blueprint('jinru', __name__)
 def index():
     '''进入界面'''
     if g.result:
-        # vnc_url = 'http://116.228.76.163:3240/yct_vnc.html?path=?token=yuanqu2016'
-        vnc_url = 'http://192.168.130.27:5000/yct_vnc.html?path=?token=yuanqu2016'
+        vnc_url = 'http://116.228.76.163:3240/yct_vnc.html?path=?token=yuanqu2016'
+        # vnc_url = 'http://192.168.130.27:5000/yct_vnc.html?path=?token=yuanqu2016'
         return render_template('JsBasePage.html', vnc_url=vnc_url)
     else:
         return render_template('unable.html')

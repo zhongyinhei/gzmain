@@ -8,15 +8,15 @@ class RedisDB:
 
     def __config(self, section):
         conf = configparser.ConfigParser()
-        conf.read("./Config/db.conf")
+        conf.read(r"C:\Users\xh\Documents\GitHub\vnc_yct_mitmproxy\Config\db.conf")
         self.__host = conf.get(section, 'host')
         self.__port = int(conf.get(section, 'port'))
         self.__db = int(conf.get(section, 'db'))
-        self.__password=int(conf.get(section,'password'))
+        # self.__password=int(conf.get(section,'password'))
         self._connect()
 
     def _connect(self):
-        self._redis = redis.Redis(host=self.__host, port=self.__port, db=self.__db,password=self.__password)
+        self._redis = redis.Redis(host=self.__host, port=self.__port, db=self.__db,password='')
         return self._redis
 
     def selectDB(self, db):

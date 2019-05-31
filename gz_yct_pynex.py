@@ -4,6 +4,8 @@ import time
 from collections import deque
 import sys
 import aircv as ac
+import os
+os.environ['DISPLAY'] = ':0'
 import pyautogui
 import uiautomation as automation
 from pywinauto import application
@@ -14,7 +16,8 @@ from database.redis_mangager import RedisDB
 
 REDIS_GZ = RedisDB()
 
-dirs = r'C:\Program Files\Mozilla Firefox\firefox.exe'
+# dirs = r'C:\Program Files\Mozilla Firefox\firefox.exe'
+dirs = r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe'
 # file = os.getcwd()
 file=sys.path[0]
 IMGSRC=file+'\screenshot.jpg'

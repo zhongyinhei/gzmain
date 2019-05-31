@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/vnc_yct_mitmproxy.iml" filepath="$PROJECT_DIR$/.idea/vnc_yct_mitmproxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/gzmain.iml" filepath="$PROJECT_DIR$/.idea/gzmain.iml" />
     </modules>
   </component>
 </project>

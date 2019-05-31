@@ -17,31 +17,34 @@ class YCTGZIP(Base):
     state = Column(String(20))
 
 
-class YCTCATLOG(Base):
-    __tablename__ = 'yctcatlog'
-    id = Column(Integer, primary_key=True)
-    license = Column(String(20))
-    chapter = Column(String(20))
-    matter = Column(String(20))
-    bespoke = Column(String(20))
-    company_name = Column(String(50))
-    yctAppNo = Column(String(50))
-    # pagecode = Column(LargeBinary)
-    lincense_state = Column(String(10))  # 默认表示未更新
-    # chapter_state=Column(String(10),default='1')
-    # matter_state=Column(String(10),default='1')
-    # bespoke_state=Column(String(10),default='1')
-
-
-class RETRUNOPTION(Base):
-    __tablename__ = 'yctreturnoption'
-    id = Column(Integer, primary_key=True)
-    yctAppNo = Column(String(50))
-    other_content = Column(String(1000))
-    company_name = Column(String(1000))
-    engage_range_repair = Column(String(1000))
-
-
-Base.metadata.create_all(engine)
+# class YCTCATLOG(Base):
+#     __tablename__ = 'yctcatlog'
+#     id = Column(Integer, primary_key=True)
+#     license = Column(String(20))
+#     chapter = Column(String(20))
+#     matter = Column(String(20))
+#     bespoke = Column(String(20))
+#     company_name = Column(String(50))
+#     yctAppNo = Column(String(50))
+#     pagecode_1 = Column(String(1000))
+#     pagecode_2 = Column(String(1000))
+#     pagecode_3 = Column(String(1000))
+#     pagecode_4=Column(String(1000))
+#     lincense_state = Column(String(10))  # 默认表示未更新
+#     # chapter_state=Column(String(10),default='1')
+#     # matter_state=Column(String(10),default='1')
+#     # bespoke_state=Column(String(10),default='1')
+#
+#
+# class RETRUNOPTION(Base):
+#     __tablename__ = 'yctreturnoption'
+#     id = Column(Integer, primary_key=True)
+#     yctAppNo = Column(String(50))
+#     other_content = Column(String(1000))
+#     company_name = Column(String(1000))
+#     engage_range_repair = Column(String(1000))
+#
+#
+# Base.metadata.create_all(engine)
 
 # Base.create_all()

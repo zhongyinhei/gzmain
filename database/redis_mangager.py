@@ -8,7 +8,7 @@ class RedisDB:
 
     def __config(self, section):
         conf = configparser.ConfigParser()
-        conf.read(r"C:\Users\xh\Documents\GitHub\vnc_yct_mitmproxy\Config\db.conf")
+        conf.read(r"C:\Users\xh\Documents\GitHub\gzmain\Config\db.conf")
         self.__host = conf.get(section, 'host')
         self.__port = int(conf.get(section, 'port'))
         self.__db = int(conf.get(section, 'db'))

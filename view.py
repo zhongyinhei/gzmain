@@ -1,12 +1,13 @@
 from flask import Flask, g
 from retrying import retry
+# from flask_cors import *
 
 from database.sqllite_operate import YCTGZIP, session
 from programe.start import gengzong
 from programe.start import jinru
 
 app = Flask(__name__)
-
+# CORS(app, supports_credentials=True)
 from raven.contrib.flask import Sentry
 
 # sentry = Sentry(app,

@@ -1,0 +1,27 @@
+Can not load UIAutomationCore.dll.
+You may need to install Windows Update KB971513.
+https://github.com/yinkaisheng/WindowsUpdateKB971513ForIUIAutomation
+Can not load UIAutomationCore.dll.
+You may need to install Windows Update KB971513.
+https://github.com/yinkaisheng/WindowsUpdateKB971513ForIUIAutomation
+Find Control Timeout: {Depth: 14, ControlType: EditControl}
+Can not load UIAutomationCore.dll.
+You may need to install Windows Update KB971513.
+https://github.com/yinkaisheng/WindowsUpdateKB971513ForIUIAutomation
+Can not move curosr. ButtonControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 14, ControlType: ButtonControl}
+Can not load UIAutomationCore.dll.
+You may need to install Windows Update KB971513.
+https://github.com/yinkaisheng/WindowsUpdateKB971513ForIUIAutomation
+Can not load UIAutomationCore.dll.
+You may need to install Windows Update KB971513.
+https://github.com/yinkaisheng/WindowsUpdateKB971513ForIUIAutomation
+Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 17, Name: '退回修改', ControlType: HyperlinkControl}
+Can not load UIAutomationCore.dll.
+You may need to install Windows Update KB971513.
+https://github.com/yinkaisheng/WindowsUpdateKB971513ForIUIAutomation
+Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 17, Name: '退回修改', ControlType: HyperlinkControl}
+Can not load UIAutomationCore.dll.
+You may need to install Windows Update KB971513.
+https://github.com/yinkaisheng/WindowsUpdateKB971513ForIUIAutomation
+Can not move curosr. ButtonControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 14, ControlType: ButtonControl}
+Find Control Timeout: {Depth: 12, Name: '退出', ControlType: HyperlinkControl}

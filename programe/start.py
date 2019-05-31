@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask import Blueprint, render_template, request, jsonify, g
 
 from database.sqllite_operate import session

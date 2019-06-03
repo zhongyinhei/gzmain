@@ -37,4 +37,4 @@ app.register_blueprint(jinru, url_prefix='/jinru')
 app.register_blueprint(gengzong, url_prefix='/gengzong')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run('0.0.0.0')

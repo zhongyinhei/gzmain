@@ -10,11 +10,11 @@ os.environ['DISPLAY'] = ':0'
 import pyautogui
 # from pywinauto import application
 
-from database.redis_mangager import RedisDB
+# from database.redis_mangager import RedisDB
 
 # 初始化当前模板环境
 
-REDIS_GZ = RedisDB()
+# REDIS_GZ = RedisDB()
 
 # dirs = r'C:\Program Files\Mozilla Firefox\firefox.exe'
 dirs = r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe'

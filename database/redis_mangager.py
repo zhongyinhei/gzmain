@@ -4,13 +4,12 @@ import configparser
 
 class RedisDB:
     def __init__(self):
-        self.__config(section='redis')
+        self.__config('redis')
 
     def __config(self, section):
-        print(section,'i am redis')
         conf = configparser.ConfigParser()
         # conf.read(r"C:\Users\xh\Documents\GitHub\gzmain\Config\db.conf")
-        conf.read(r"./db.conf")
+        conf.read(r"./Config/db.conf")
         self.__host = conf.get(section, 'host')
         self.__port = int(conf.get(section, 'port'))
         self.__db = int(conf.get(section, 'db'))

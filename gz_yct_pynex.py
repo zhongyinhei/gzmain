@@ -8,7 +8,7 @@ import aircv as ac
 
 os.environ['DISPLAY'] = ':0'
 import pyautogui
-from pywinauto import application
+# from pywinauto import application
 
 from database.redis_mangager import RedisDB
 
@@ -241,8 +241,8 @@ class Iter_Task(YCTGZ):
     def breadth_first(self, STATE):
         '''获取一个账号然后分别轮询login，trace_list和detail事件'''
         self.STATE = STATE
-        app = application.Application()
-        app.connect(path=dirs, timeout=20)
+        # app = application.Application()
+        # app.connect(path=dirs, timeout=20)
         while not self.change_account:
             while self.restart_login:
                 for process_bar in ['request_login']:

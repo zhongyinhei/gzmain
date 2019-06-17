@@ -263,7 +263,7 @@ class YCTGZ():
                             automation.SendKeys('{Ctrl}k{Ctrl}k')
                             automation.SendKeys(
                                 '%s{Enter}' % (
-                                    'http://yct.sh.gov.cn/bizhallnz_yctnew/apply/appendix/content?id=-{}&appendixStatus=&isPrint=1&p=1&papers={}yctAppNo={}'.format(
+                                    'http://yct.sh.gov.cn/bizhallnz_yctnew/apply/appendix/content?id=-{}&appendixStatus=&isPrint=1&p=1&papers={}&yctAppNo={}'.format(
                                         result,result, yctAppNo)
                                 )
                             )

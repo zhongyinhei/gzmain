@@ -158,53 +158,47 @@ class YCTGZ():
             for i in range(1, 3):
                 time.sleep(2)
                 automation.SendKeys('{Down}')
-            res = REDIS_GZ.hget('specify_account_session')
-            print(res['session'])
             for i in range(1, 6):
                 for x in range(1, 8):
-                        automation.SendKeys('{Down}')
-                        if'false'==res['session']:
-                            pyautogui.screenshot(IMGSRC)
-                            imgobj = file + r'\th.jpg'
-                            imsrc = ac.imread(IMGSRC)
-                            imobj = ac.imread(imgobj)
-                            match_result = ac.find_template(imsrc, imobj,
-                                                            0.8)
-                            if match_result:
-                                automation.HyperlinkControl(Depth=17, Name='退回修改', foundIndex=i).Click()
+                    res = REDIS_GZ.hget('specify_account_session')
+                    automation.SendKeys('{Down}')
+                    if'false'==res['session']:
+                        print(res['session'],'false')
+                        pyautogui.screenshot(IMGSRC)
+                        imgobj = file + r'\th.jpg'
+                        imsrc = ac.imread(IMGSRC)
+                        imobj = ac.imread(imgobj)
+                        match_result = ac.find_template(imsrc, imobj,
+                                                        0.8)
+                        if match_result:
+                            automation.HyperlinkControl(Depth=17, Name='退回修改', foundIndex=i).Click()
+                            time.sleep(5)
+                            if self.gain_session(name='退回修改') == 2:
+                                return 1
+                            elif self.restart_login == True:
+                                return 1
+                            else:
+                                self.lddb()
+                        imgobj = file + r'\txcg.jpg'
+                        imobj = ac.imread(imgobj)
+                        match_result = ac.find_template(imsrc, imobj,
+                                                        0.8)
+                        if match_result:
+                            automation.HyperlinkControl(Depth=17, Name='填报成功（查看详情）').Click()
+                            time.sleep(5)
+                            if self.gain_session(name='填报成功') == 2:
+                                return 1
+                            elif self.restart_login == True:
+                                return 1
+                            else:
+                                print(193)
                                 time.sleep(5)
-                                if self.gain_session(name='退回修改') == 2:
-                                    print('165行')
-                                    return 1
-                                elif self.restart_login == True:
-                                    print('168行')
-                                    return 1
-                                else:
-                                    print('171行')
-                                    self.lddb()
-                            imgobj = file + r'\txcg.jpg'
-                            imobj = ac.imread(imgobj)
-                            match_result = ac.find_template(imsrc, imobj,
-                                                            0.8)
-                            if match_result:
-                                res=automation.HyperlinkControl(Depth=17, Name='填报成功（查看详情）').Click()
-                                print(res)
-                                time.sleep(5)
-                                if self.gain_session(name='填报成功') == 2:
-                                    print('192')
-                                    return 1
-                                elif self.restart_login == True:
-                                    print('190行')
-                                    return 1
-                                else:
-                                    print(193)
-                                    time.sleep(5)
-                                    self.lddb()
-                        else:
-                            print(196)
-                            continue
-            if name['getpage'] == name['total']:
-            # if name['getpage'] == '3':
+                                self.lddb()
+                    else:
+                        print(196)
+                        continue
+            # if name['getpage'] == name['total']:
+            if name['getpage'] == '3':
                 print('205')
                 return 1
             else:
@@ -247,6 +241,7 @@ class YCTGZ():
                     break
                 elif '填报成功' in specify_account_yctAppNo[yctAppNo]:
                     print('253')
+                    print(yctAppNo)
                     automation.SendKeys('{Ctrl}k{Ctrl}k')
                     automation.SendKeys(
                         '%s{Enter}' % (
@@ -255,7 +250,7 @@ class YCTGZ():
                     results = REDIS_GZ.hget('specify_account_tbcg_' + yctAppNo)
                     for result in results:
                         if len(result) > 15:
-                            id_, app_no = result.split('&')
+                            id_, app_no = result.split('^')
                             automation.SendKeys('{Ctrl}k{Ctrl}k')
                             # http://yct.sh.gov.cn/bizhallnz_yctnew/apply/appendix/content_special?id=041175&p=1&app_no=2900000320190604A008&yctAppNO=faee7e7331ea42f58400c72a1e441209
                             automation.SendKeys(

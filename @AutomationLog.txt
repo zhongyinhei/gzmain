@@ -40,3 +40,8 @@ Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. Sea
 Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 17, Name: '填报成功（查看详情）', ControlType: HyperlinkControl}
 Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 17, Name: '填报成功（查看详情）', ControlType: HyperlinkControl}
 Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 17, Name: '填报成功（查看详情）', ControlType: HyperlinkControl}
+Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 17, Name: '填报成功（查看详情）', ControlType: HyperlinkControl}
+Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 17, Name: '填报成功（查看详情）', ControlType: HyperlinkControl}
+Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 17, Name: '填报成功（查看详情）', ControlType: HyperlinkControl}
+Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 17, Name: '填报成功（查看详情）', ControlType: HyperlinkControl}
+Can not move curosr. HyperlinkControl's BoundingRectangle is (0,0,0,0)[0x0]. SearchProperties: {Depth: 17, Name: '填报成功（查看详情）', ControlType: HyperlinkControl}

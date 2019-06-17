@@ -37,4 +37,4 @@ app.register_blueprint(jinru, url_prefix='/jinru')
 app.register_blueprint(gengzong, url_prefix='/gengzong')
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1',port=7777)
+    app.run(host='0.0.0.0',port=7777)

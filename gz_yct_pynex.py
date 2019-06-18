@@ -82,18 +82,8 @@ class YCTGZ():
                 automation.SendKeys('{Ctrl}k{Ctrl}k')
                 time.sleep(2)
                 automation.SendKeys(
-                    'http://yct.sh.gov.cn/portal_yct/webportal/handle_progress.do{Enter}')
-                pyautogui.screenshot(IMGSRC)
-                imsrc = ac.imread(IMGSRC)
-                imobj = ac.imread(file + r'\bljdgz.jpg')
-                match_result = ac.find_template(imsrc, imobj,
-                                                0.8)
-                if match_result:
-                    return 1
-                else:
-                    print('96行')
-                    self.restart_login = True
-                    return 1
+                    'http://yct.sh.gov.cn/portal_yct/webportal/handle_progress.do?x=12{Enter}')
+                return 1
             else:
                 self.restart_login = True
                 return 1
@@ -115,26 +105,9 @@ class YCTGZ():
                 automation.SendKeys('{Ctrl}k{Ctrl}k')
                 time.sleep(2)
                 automation.SendKeys(
-                    'http://yct.sh.gov.cn/portal_yct/webportal/handle_progress.do{Enter}')
+                    'http://yct.sh.gov.cn/portal_yct/webportal/handle_progress.do?x=12{Enter}')
                 time.sleep(8)
-                print(123)
-                pyautogui.screenshot(IMGSRC)
-                print(125)
-                imsrc = ac.imread(IMGSRC)
-                print(127)
-                imgobj = r'\bljdgz.jpg'
-                imobj = ac.imread(file + imgobj)
-                print(130)
-                match_result = ac.find_template(imsrc, imobj,
-                                                0.8)
-                print(match_result, 133)
-                if match_result:
-                    print('128')
-                    return 1
-                else:
-                    print('131行')
-                    self.restart_login = True
-                    return 1
+                return 1
             else:
                 self.restart_login = True
                 print('136行')
@@ -143,90 +116,60 @@ class YCTGZ():
     def lddb(self):
         # 判断页数是否是相同不相同则继续点击下一页
         time.sleep(5)
-        pyautogui.screenshot(IMGSRC)
-        imsrc = ac.imread(IMGSRC)
-        imobj = ac.imread(file + r'\bljdgz.jpg')
-        match_result = ac.find_template(imsrc, imobj,
-                                        0.8)
-        print(match_result, '143行')
-        if match_result:
-            name = REDIS_GZ.hget('specify_account_yctAppNo_page')
-            print(name)
-            # result = automation.EditControl(Depth=14, foundIndex=10)
-            # redis 里面去数据
-            # name = re.compile('\d+').findall(result.Name)
-            for i in range(1, 3):
-                time.sleep(2)
+        name = REDIS_GZ.hget('specify_account_yctAppNo_page')
+        for i in range(1, 3):
+            time.sleep(2)
+            automation.SendKeys('{Down}')
+        for i in range(1, 6):
+            for x in range(1, 8):
+                res = REDIS_GZ.hget('specify_account_session')
                 automation.SendKeys('{Down}')
-            for i in range(1, 6):
-                for x in range(1, 8):
-                    res = REDIS_GZ.hget('specify_account_session')
-                    automation.SendKeys('{Down}')
-                    if'false'==res['session']:
-                        print(res['session'],'false')
-                        pyautogui.screenshot(IMGSRC)
-                        imgobj = file + r'\th.jpg'
-                        imsrc = ac.imread(IMGSRC)
-                        imobj = ac.imread(imgobj)
-                        match_result = ac.find_template(imsrc, imobj,
-                                                        0.8)
-                        if match_result:
-                            automation.HyperlinkControl(Depth=17, Name='退回修改', foundIndex=i).Click()
+                if 'false' == res['session']:
+                    pyautogui.screenshot(IMGSRC)
+                    imgobj = file + r'\th.jpg'
+                    imsrc = ac.imread(IMGSRC)
+                    imobj = ac.imread(imgobj)
+                    match_result = ac.find_template(imsrc, imobj,
+                                                    0.8)
+                    if match_result:
+                        automation.HyperlinkControl(Depth=17, Name='退回修改', foundIndex=i).Click()
+                        time.sleep(5)
+                        if self.gain_session(name='退回修改') == 2:
+                            return 1
+                        elif self.restart_login == True:
+                            return 1
+                        else:
+                            self.lddb()
+                    imgobj = file + r'\txcg.jpg'
+                    imobj = ac.imread(imgobj)
+                    match_result = ac.find_template(imsrc, imobj,
+                                                    0.8)
+                    if match_result:
+                        automation.HyperlinkControl(Depth=17, Name='填报成功（查看详情）').Click()
+                        time.sleep(5)
+                        if self.gain_session(name='填报成功') == 2:
+                            return 1
+                        elif self.restart_login == True:
+                            return 1
+                        else:
                             time.sleep(5)
-                            if self.gain_session(name='退回修改') == 2:
-                                return 1
-                            elif self.restart_login == True:
-                                return 1
-                            else:
-                                self.lddb()
-                        imgobj = file + r'\txcg.jpg'
-                        imobj = ac.imread(imgobj)
-                        match_result = ac.find_template(imsrc, imobj,
-                                                        0.8)
-                        if match_result:
-                            automation.HyperlinkControl(Depth=17, Name='填报成功（查看详情）').Click()
-                            time.sleep(5)
-                            if self.gain_session(name='填报成功') == 2:
-                                return 1
-                            elif self.restart_login == True:
-                                return 1
-                            else:
-                                print(193)
-                                time.sleep(5)
-                                self.lddb()
-                    else:
-                        print(196)
-                        continue
-            # if name['getpage'] == name['total']:
-            if name['getpage'] == '3':
-                print('205')
-                return 1
-            else:
-                print(208)
-                return
-        else:
-            self.restart_login = True
-            print('204行')
+                            self.lddb()
+                else:
+                    continue
+        if name['getpage'] == name['total']:
             return 1
+        else:
+            return
 
     def djxyy(self):
         '''根据当前是否有下一页,如果有则点击如果没有下一页就返回1'''
-        print('djxyy', 209)
-        pyautogui.screenshot(IMGSRC)
-        imgobj = file + r'\djxyy.jpg'
-        imsrc = ac.imread(IMGSRC)
-        imobj = ac.imread(imgobj)
-        match_result = ac.find_template(imsrc, imobj,
-                                        0.8)
-        if match_result:
-            automation.ButtonControl(Depth=14, foundIndex=4).Click()
-        time.sleep(8)
+        time.sleep(5)
+        automation.ButtonControl(Depth=14, foundIndex=4).Click()
+        time.sleep(5)
 
     def pjurl(self):
         '''控制鼠标到url栏，删除，重写，按enter键'''
-        print('237行')
         specify_account_yctAppNo = REDIS_GZ.hget('specify_account_yctAppNo')
-        print(specify_account_yctAppNo)
         if specify_account_yctAppNo:
             for yctAppNo in specify_account_yctAppNo:
                 if '退回修改' in specify_account_yctAppNo[yctAppNo]:
@@ -235,13 +178,8 @@ class YCTGZ():
                         '%s{Enter}' % (
                             'http://yct.sh.gov.cn/bizhallnz_yctnew/apply/appendix/print?yctAppNo={}'.format(yctAppNo)))
                     time.sleep(10)
-                    if self.pcontent():
-                        print(249)
-                        return 1
                     break
                 elif '填报成功' in specify_account_yctAppNo[yctAppNo]:
-                    print('253')
-                    print(yctAppNo)
                     automation.SendKeys('{Ctrl}k{Ctrl}k')
                     automation.SendKeys(
                         '%s{Enter}' % (
@@ -252,7 +190,6 @@ class YCTGZ():
                         if len(result) > 15:
                             id_, app_no = result.split('^')
                             automation.SendKeys('{Ctrl}k{Ctrl}k')
-                            # http://yct.sh.gov.cn/bizhallnz_yctnew/apply/appendix/content_special?id=041175&p=1&app_no=2900000320190604A008&yctAppNO=faee7e7331ea42f58400c72a1e441209
                             automation.SendKeys(
                                 '%s{Enter}' % (
                                     'http://yct.sh.gov.cn/bizhallnz_yctnew/apply/appendix/content_special?id=-{}&p=1&app_no={}&papers={}&yctAppNo={}'.format(
@@ -264,37 +201,13 @@ class YCTGZ():
                             automation.SendKeys(
                                 '%s{Enter}' % (
                                     'http://yct.sh.gov.cn/bizhallnz_yctnew/apply/appendix/content?id=-{}&appendixStatus=&isPrint=1&p=1&papers={}&yctAppNo={}'.format(
-                                        result,result, yctAppNo)
+                                        result, result, yctAppNo)
                                 )
                             )
                             time.sleep(10)
-                        if self.pcontent():
-                            return 1
                     break
 
         else:
-            return 1
-
-    def pcontent(self):
-        '''celery调度broker做任务从代理中获取文本内容'''
-        time.sleep(10)
-        print('286行')
-        pyautogui.screenshot(IMGSRC)
-        imgobj = file + '\ysjg_thxg.jpg'
-        imsrc = ac.imread(IMGSRC)
-        imobj = ac.imread(imgobj)
-        match_result = ac.find_template(imsrc, imobj,
-                                        0.8)
-        if match_result:
-            return
-        imgobj = file + '\zjdy.jpg'
-        imobj = ac.imread(imgobj)
-        match_result = ac.find_template(imsrc, imobj,
-                                        0.8)
-        if match_result:
-            return
-        else:
-            self.restart_login = True
             return 1
 
     def yztc_dl(self):
@@ -311,17 +224,6 @@ class YCTGZ():
         result = automation.EditControl(Depth=11, Name='开办企业申请信息填写人需进行实名认证，系统将跳转至“一网通办”总门户进行用户注册和认证')
         if automation.WaitForExist(result, 5):
             automation.HyperlinkControl(Depth=10, Name='确定').Click()
-            # pyautogui.screenshot(IMGSRC)
-            # imgobj = file + '\zyts.jpg'
-            # imsrc = ac.imread(IMGSRC)
-            # imobj = ac.imread(imgobj)
-            # match_result = ac.find_template(imsrc, imobj,
-            #                                 0.8)
-            # if match_result:
-            #     x, y = match_result['result']
-            #     pyautogui.click(x, y)
-            # if automation.WaitForExist(result, 5):
-            #     result.Click()
             return 1
         else:
             raise ('portal_yct异常')
@@ -354,14 +256,14 @@ class Iter_Task(YCTGZ):
             try:
                 eval('self.{}()'.format(process_bar))
             except Exception as e:
-                print(e, '355')
+                print(e)
             if self.restart_login:
                 automation.SendKeys('{Ctrl}k{Ctrl}k')
                 automation.SendKeys(
                     '%s{Enter}' % (
                         'http://yct.sh.gov.cn/portal_yct/webportal/handle_progress.do?x=11'))
-                # 如果是这样点击一般mitmproxy就不需要在去拦截了
                 return
+
         REDIS_GZ.hset('specify_account_yctAppNo_page', {'getpage': '-1', 'total': '-2'})
         return 'success'
 
@@ -424,6 +326,8 @@ class Iter_Task(YCTGZ):
             q_q += circle['order']
             zip_key = {'q_q': q_q, 'circle': circle}
             return self.Intelligent_verification(zip_key)
+        else:
+            return
 
     def changeaccount(self):
         time.sleep(2)
@@ -431,9 +335,9 @@ class Iter_Task(YCTGZ):
             automation.SendKeys('{Ctrl}k{Ctrl}k')
             time.sleep(2)
             automation.SendKeys(
-                'http://yct.sh.gov.cn/portal_yct/webportal/handle_progress.do{Enter}')
+                'http://yct.sh.gov.cn/portal_yct/webportal/handle_progress.do?x=12{Enter}')
         except Exception as e:
-            print(e, 434)
+            print(e)
         else:
             time.sleep(5)
             pyautogui.screenshot(IMGSRC)
@@ -443,18 +347,12 @@ class Iter_Task(YCTGZ):
             match_result = ac.find_template(imsrc, imobj,
                                             0.8)
             if match_result:
-                print('准备自动退出')
-                res = input('准备自动退出')
-                if res == 'y':
-                    automation.HyperlinkControl(Depth=12, Name='退出').Click()
-                    time.sleep(5)
-                    REDIS_GZ.hset('specify_account_session', {'session': 'false'})
-                    automation.HyperlinkControl(Depth=11, Name='账号密码登录').Click()
+                automation.HyperlinkControl(Depth=12, Name='退出').Click()
+                time.sleep(5)
+                REDIS_GZ.hset('specify_account_session', {'session': 'false'})
+                automation.HyperlinkControl(Depth=11, Name='账号密码登录').Click()
             else:
                 self.restart_login = True
 
 
-# https://zwdtuser.sh.gov.cn/uc/login/login.jsp?self=self&type=1&jump=&redirect_uri=http://yct.sh.gov.cn/portal_yct/webportal/handle_progress.do
 Iter_Task().breadth_first('手动')
-
-# 500服务器内部错误

@@ -51,24 +51,16 @@ class YCTGZ():
         if automation.WaitForExist(result, 5):
             return 1
         else:
-            automation.SendKeys('{F6}')
-            automation.SendKeys('{Enter}')
-            result = automation.CustomControl(Depth=9, Name='办理进度跟踪')
-            if automation.WaitForExist(result, 5):
-                return 1
-            else:
-                self.restart_login = True
+            self.restart_login = True
 
     def gain_session(self, name):
         '''获取点击暂存以后得到的session'''
-        print(name, 'name')
+        time.sleep(5)
         if '退回修改' in name:
-            time.sleep(5)
             for i in range(1, 3):
                 automation.SendKeys('{Down}')
             time.sleep(5)
             pyautogui.screenshot(IMGSRC)
-            time.sleep(5)
             imgobj = r'\thyj.jpg'
             imsrc = ac.imread(IMGSRC)
             imobj = ac.imread(file + imgobj)
@@ -88,10 +80,9 @@ class YCTGZ():
                 self.restart_login = True
                 return 1
         elif '填报成功' in name:
-            print(name, 'name')
             time.sleep(5)
             pyautogui.screenshot(IMGSRC)
-            time.sleep(5)
+            # time.sleep(5)
             imgobj = r'\tbcg.jpg'
             imsrc = ac.imread(IMGSRC)
             imobj = ac.imread(file + imgobj)
@@ -106,11 +97,10 @@ class YCTGZ():
                 time.sleep(2)
                 automation.SendKeys(
                     'http://yct.sh.gov.cn/portal_yct/webportal/handle_progress.do?x=12{Enter}')
-                time.sleep(8)
+                time.sleep(5)
                 return 1
             else:
                 self.restart_login = True
-                print('136行')
                 return 1
 
     def lddb(self):
@@ -133,7 +123,6 @@ class YCTGZ():
                                                     0.8)
                     if match_result:
                         automation.HyperlinkControl(Depth=17, Name='退回修改', foundIndex=i).Click()
-                        time.sleep(5)
                         if self.gain_session(name='退回修改') == 2:
                             return 1
                         elif self.restart_login == True:
@@ -146,13 +135,11 @@ class YCTGZ():
                                                     0.8)
                     if match_result:
                         automation.HyperlinkControl(Depth=17, Name='填报成功（查看详情）').Click()
-                        time.sleep(5)
                         if self.gain_session(name='填报成功') == 2:
                             return 1
                         elif self.restart_login == True:
                             return 1
                         else:
-                            time.sleep(5)
                             self.lddb()
                 else:
                     continue
@@ -165,7 +152,6 @@ class YCTGZ():
         '''根据当前是否有下一页,如果有则点击如果没有下一页就返回1'''
         time.sleep(5)
         automation.ButtonControl(Depth=14, foundIndex=4).Click()
-        time.sleep(5)
 
     def pjurl(self):
         '''控制鼠标到url栏，删除，重写，按enter键'''

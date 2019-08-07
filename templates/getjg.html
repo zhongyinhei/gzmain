@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <script src="/static/jquery.min.js"></script>
+    <style type="text/css">
+
+         #div_window {       position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -140px;
+        margin-left: -175px;
+    }
+        #sign:hover{
+            background-color: #ff9790;
+        }
+    </style>
+</head>
+<body>
+<div id="div_window">
+    <H1 style="text-align:center;font-weight: 300;">一窗通跟踪工作完成记录</H1>
+<input placeholder="账号" id="zh" style="border: solid 1px;padding: 2.6px">
+<input placeholder="工作人名称" id="gzr" style="border: solid 1px;padding: 2.6px">
+<button id="sign" type="button" onclick="submit()">提交</button>
+    </div>
+</body>
+<script>
+    function submit() {
+        account=$('#zh')[0].value;
+        if (account=='' || account==null){
+            alert('跟踪账号不能为空');
+        }
+        username=$('#gzr')[0].value;
+        if (username=='' || username==null){
+            alert('工作人名称不能为空');
+        }
+
+        else{
+            $.ajax({
+         async: false,
+         type: "post",
+         data: {'account': account, 'username': username},
+         url: "http://127.0.0.1:5030/getrecord",
+         fail: function (res) {
+             alert('后台报错,请稍后在使用');
+         },
+		 error:function (xhr,errorText,errorType) {
+			 alert('网络错误，请稍后重连');
+         },
+         success: function (res) {
+             if (res == 1) {
+                 document.location.href='http:127.0.0.1:5030/getrecord?x=14';
+             }
+             else {
+                 alert(res);
+             }
+
+        }
+    })}}
+</script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>一窗通跟踪账号列表</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css" media="all">
+</head>
+<body>
+
+<table id="demo"></table>
+
+<script src="/static/layui/layui.js"></script>
+<script>
+    //setInterval(update,10000);
+    function update() {
+        console.log('开始了');
+        layui.use('table', function () {
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+                , height: 500, width: 700
+                , url: '/getgzrender' //数据接口
+                , page: true //开启分页
+                , cols: [[ //表头
+                    {field: 'id', title: '序号', width: 70, fixed: 'center'}
+                    , {field: 'account', title: '用户名', width: 150, fixed: 'center'}
+                    , {field: 'password', title: '密码', width: 150, fixed: 'center'}
+                    , {field: 'complete_state', title: '完成状态', sort: true, width: 100, fixed: 'center'},
+                    {field: 'time_scope', title: '开始时间', sort: true, width: 105, fixed: 'center'},
+                    {field:'unlock',title:'账号状态',sort:true,width:95,fixed:'center'}
+                ]], done: function (res) {
+                    if (res == 1) {
+                        window.h = 1;
+                        alert('暂时没有可跟踪账号');
+                        window.close();
+
+                    }
+                }
+            });
+
+        });
+    }
+
+    window.h = 0;
+    update();
+</script>
+</body>
+</html>

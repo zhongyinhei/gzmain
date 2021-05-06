@@ -15,7 +15,7 @@ decorator==4.4.0
 dnspython==1.16.0
 eventlet==0.24.1
 Flask==1.0.2
-Flask-Cors==3.0.7
+Flask-Cors==3.0.9
 flower==0.9.3
 greenlet==0.4.15
 h11==0.7.0

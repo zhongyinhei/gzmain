@@ -51,7 +51,7 @@ PyRect==0.1.4
 PyScreeze==0.1.21
 PyTweening==1.0.3
 pytz==2019.1
-pywin32==224
+pywin32==301
 pywinauto==0.6.6
 raven==6.10.0
 redis==3.2.1
